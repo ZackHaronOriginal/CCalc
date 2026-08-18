@@ -93,11 +93,48 @@ cmake --build build
 
 ---
 
-## When you make a significant decision
+---
 
-Write an ADR in `docs/adr/`. Copy `0000-template.md`, give it the next number,
-and record what was decided, what else was considered, and why. Decisions with
-no recorded reasoning get re-litigated or silently reversed six months later.
+## The knowledge base — where your work goes
+
+`docs/` has a reference half and a knowledge-base half. **Findings, decisions,
+plans and defects all belong in the knowledge base, not in a chat reply that
+disappears.**
+
+| You did this | It goes here | Index to update |
+|---|---|---|
+| Researched a topic | `docs/research/<topic>/R-NNN-name/README.md` | `docs/research/INDEX.md` |
+| Made a significant decision | `docs/adr/<topic>/NNNN-name.md` | `docs/adr/INDEX.md` |
+| Identified work to do | a row in `docs/features/INDEX.md` | — |
+| Found a defect | a row in `docs/bugs/INDEX.md` | — |
+| Hit something undecided | a section in `docs/QUESTIONS.md` | — |
+
+Topics come from `docs/TOPICS.md`. **Use an existing topic** — inventing
+`parser` next to `expr` destroys the value of a shared list.
+
+### Four rules, no exceptions
+
+1. **The index is the authority.** An item not in its `INDEX.md` does not exist.
+   Always update the index in the same commit as the item.
+2. **One line until it earns more.** Start every item as a single row. Give it a
+   file only when there is something that will not fit on the line, and a folder
+   only when it has several artifacts. **Do not create empty template files** —
+   they look like documentation and contain nothing.
+3. **Never delete.** Dropped features, fixed bugs, superseded research and
+   answered questions stay, with a terminal status.
+4. **Never reuse an ID.** Each index records the next free one.
+
+### Writing research
+
+The `README.md` of a research entry is the deliverable and must be readable on
+its own. **State the conclusion first** — a file that buries the answer below the
+methodology will not be read. Then: what it means for CCalc, what was rejected
+and why, and an honest confidence section distinguishing "verified by building
+it" from "the documentation claims this". Record sources in `sources.md`.
+
+Research that concludes nothing and changes nothing is not finished.
+
+---
 
 ## When you change something documented
 
@@ -106,3 +143,5 @@ Update the documentation in the **same commit**:
 - grammar changes → `docs/GRAMMAR.md`
 - plugin ABI changes → `docs/PLUGINS.md` **and** `plugins/example/`
 - new module or layer change → `libs/README.md` **and** this file
+- a settled question → move it to Answered in `docs/QUESTIONS.md` and link what
+  settled it

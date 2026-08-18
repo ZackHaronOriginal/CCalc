@@ -3,6 +3,9 @@
 One short file per significant decision: what was decided, what else was
 considered, and **why**.
 
+Filed by topic — see [`../TOPICS.md`](../TOPICS.md) for the list.
+[`INDEX.md`](INDEX.md) lists every record and holds the next free number.
+
 ## Why bother
 
 Six months from now, someone — possibly you — will look at a choice here and
@@ -12,38 +15,58 @@ the original problem the hard way.
 
 An ADR is insurance against that. It costs ten minutes to write.
 
+## Layout
+
+```
+adr/
+├── INDEX.md              every record, and the next free number
+├── 0000-template.md
+├── core/     0003
+├── expr/     0002
+├── plot/     0005
+├── plugins/  0006
+├── project/  0001, 0004
+└── units/    0007
+```
+
+**Numbers are global, not per topic.** ADR 0004 is one document, wherever it
+lives. The trade-off is that you cannot find the next free number by looking in
+one folder — which is exactly what `INDEX.md` is for. Read it before adding one.
+
 ## How to add one
 
-1. Copy `0000-template.md`
-2. Name it `NNNN-short-title.md` with the next free number
-3. Fill it in and commit it with the change it describes
+1. Check `INDEX.md` for the next free number
+2. Copy `0000-template.md` to `<topic>/NNNN-short-title.md`
+3. Fill it in — **including the alternatives you rejected**
+4. Add a row to `INDEX.md`
+5. Commit it together with the change it describes
 
 ## Rules
 
 - **Never delete or rewrite an accepted ADR.** If a decision is reversed, write a
-  *new* one that supersedes it, and mark the old one `Superseded by NNNN`. The
-  record of what we used to think, and why we changed, is the valuable part.
+  new one that supersedes it and mark the old one `Superseded by NNNN`.
 - Keep them short. A page is plenty.
-- Record the alternatives you rejected. An ADR without them only says what we do,
-  not why the obvious other option is worse — and the obvious other option is
-  exactly what someone will propose later.
+- **Always record the alternatives.** An ADR without them says what we do but not
+  why the obvious other option is worse — and the obvious other option is exactly
+  what someone will propose in a year.
+- Never reuse a number, even if a record is abandoned.
 
 ## What deserves an ADR
 
-Anything hard to reverse, or anything where a reasonable person would choose
-differently: module boundaries and layers, the plugin ABI, dependency choices,
-file format decisions, the UI toolkit.
+Anything hard to reverse, or where a reasonable person would choose differently:
+module boundaries and layers, the plugin ABI, dependency choices, file formats,
+the UI toolkit.
 
 Not: naming a variable, splitting a long function, ordinary refactors.
 
-## Index
+## Where ADRs come from
 
-| # | Decision | Status |
-|---|---|---|
-| [0001](0001-modules-with-strict-layering.md) | Layered modules under `libs/` | Accepted |
-| [0002](0002-pratt-parser.md) | Pratt parser over shunting-yard | Accepted |
-| [0003](0003-expected-over-exceptions.md) | `std::expected` over exceptions | Accepted |
-| [0004](0004-separate-include-and-src.md) | Separate `include/` and `src/` per module | Accepted |
-| [0005](0005-plot-computes-geometry.md) | `plot` computes geometry, never renders | Accepted |
-| [0006](0006-plugin-boundary-is-c.md) | The plugin boundary is a C ABI | Accepted |
-| [0007](0007-units-at-l1.md) | `units` sits at L1, not L2 | Accepted |
+An ADR is usually the *end* of a chain, not the start of one:
+
+```
+question (QUESTIONS.md)  →  research/  →  ADR  →  feature
+```
+
+A question we cannot answer becomes research. Research that reaches a conclusion
+becomes a decision. A decision that implies work becomes a feature. When you
+write an ADR, close the question and link the research that fed it.

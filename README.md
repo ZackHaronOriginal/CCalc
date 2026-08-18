@@ -51,6 +51,10 @@ cmake --build build
   or new to the project
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — module layers and the reasoning
 - [`docs/adr/`](docs/adr/) — why each significant decision was made
+- [`docs/features/INDEX.md`](docs/features/INDEX.md) — the backlog
+- [`docs/QUESTIONS.md`](docs/QUESTIONS.md) — what is still undecided
+- [`docs/research/`](docs/research/) — findings from investigation
+- [`docs/bugs/INDEX.md`](docs/bugs/INDEX.md) — known defects
 - `docs/GRAMMAR.md` — the expression grammar *(to be written)*
 - `docs/PLUGINS.md` — guide for plugin authors *(to be written)*
 

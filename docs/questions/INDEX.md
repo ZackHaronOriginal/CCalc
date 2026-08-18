@@ -3,7 +3,7 @@
 Every undecided thing, one line each. **If it is not listed here, it is not
 tracked.**
 
-Next free ID: **Q-008**. IDs are never reused.
+Next free ID: **Q-015**. IDs are never reused.
 
 ## Open
 
@@ -16,6 +16,13 @@ Next free ID: **Q-008**. IDs are never reused.
 | Q-005 | expression-engine / evaluation | Is angle mode global state, or part of a call? | F-005, F-013 | M2 | — |
 | Q-006 | extensibility / plugin-system / abi | Must ABI v1 be able to pass arrays? | F-015, F-016 | **before ABI v1 ships — irreversible after** | [detail](extensibility/plugin-system/abi/Q-006-abi-arrays.md) |
 | Q-007 | interface / session-state | Workspace file format — JSON, TOML, or custom? | F-018 | M8 | — |
+| Q-008 | expression-engine / evaluation | Walk the tree every time, or compile it once? | F-002, F-013 | before M6 — but shapes the AST in M1 | [detail](expression-engine/evaluation/Q-008-evaluation-strategy.md) |
+| Q-009 | expression-engine / evaluation | How does a user interrupt a long computation? | F-002, F-013, F-017 | **M1 — it is part of the evaluator's signature** | [detail](expression-engine/evaluation/Q-009-cancellation.md) |
+| Q-010 | foundation / error-handling | Does `Diagnostic` carry English text, or a message id? | F-006 | M3 — before it is widely used | [detail](foundation/error-handling/Q-010-diagnostic-and-translation.md) |
+| Q-011 | expression-engine / notation-handling | Does the parser stop at the first error, or collect several? | F-002, F-006 | M3 — changes `Diagnostic` from one to many | — |
+| Q-012 | foundation / value-model | Is the engine single-threaded? Must the registry be thread-safe? | F-013, F-015, F-017 | M6 — plot sampling is the first parallel workload | — |
+| Q-013 | extensibility / plugin-system | Are operators registry entries, so a plugin can add one? | F-003, F-015 | before ABI v1 — needs a dynamic precedence table | — |
+| Q-014 | foundation / value-model | Who owns number formatting — significant digits, when to go scientific? | F-007, F-017 | M4 — both frontends need identical output | — |
 
 ## Answered
 
@@ -41,5 +48,13 @@ Not all deferral is equal, and the difference matters more than urgency:
   choice stays reversible. Deferring costs nothing.
 - **Needed soon** — Q-002, Q-005. Work is blocked, but a wrong answer is
   correctable.
-- **Irreversible at a specific moment** — Q-006. Once ABI v1 is published the
-  contract is frozen forever. This is the one to watch.
+- **Irreversible at a specific moment** — Q-006, Q-013. Once ABI v1 is published
+  the contract is frozen forever. These are the ones to watch.
+
+### The signature questions
+
+Q-009 and Q-010 are a distinct kind, and the most likely to be missed. Neither
+needs its *mechanism* built early — but both change a **type signature** used in
+hundreds of places, so the shape has to be right in M1 and M3 respectively.
+Deciding them late is not a feature delay, it is a sweep through every call site
+in three modules.

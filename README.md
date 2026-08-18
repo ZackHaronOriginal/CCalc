@@ -47,7 +47,10 @@ cmake --build build
 
 ## Documentation
 
+- [`CLAUDE.md`](CLAUDE.md) — the rules, condensed. Read first if you are an agent
+  or new to the project
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — module layers and the reasoning
+- [`docs/adr/`](docs/adr/) — why each significant decision was made
 - `docs/GRAMMAR.md` — the expression grammar *(to be written)*
 - `docs/PLUGINS.md` — guide for plugin authors *(to be written)*
 

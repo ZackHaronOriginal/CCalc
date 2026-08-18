@@ -29,7 +29,7 @@ specification — enough that someone picking it up does not start from nothing.
 ## Open questions
 
 Anything undecided that blocks or shapes the work. Cross-link to
-`../QUESTIONS.md`; do not settle a real decision quietly here — that is what ADRs
+`../questions/INDEX.md`; do not settle a real decision quietly here — that is what ADRs
 are for.
 
 ## Done when

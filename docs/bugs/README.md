@@ -1,6 +1,6 @@
 # Bugs
 
-Known defects. Filed by topic ([`../TOPICS.md`](../TOPICS.md)).
+Known defects. Filed by topic ([`../topics/INDEX.md`](../topics/INDEX.md)).
 [`INDEX.md`](INDEX.md) is the bug list — every bug, one line each.
 
 ## The escalation ladder

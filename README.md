@@ -52,7 +52,8 @@ cmake --build build
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — module layers and the reasoning
 - [`docs/adr/`](docs/adr/) — why each significant decision was made
 - [`docs/features/INDEX.md`](docs/features/INDEX.md) — the backlog
-- [`docs/QUESTIONS.md`](docs/QUESTIONS.md) — what is still undecided
+- [`docs/questions/INDEX.md`](docs/questions/INDEX.md) — what is still undecided
+- [`docs/topics/INDEX.md`](docs/topics/INDEX.md) — the shared topic vocabulary
 - [`docs/research/`](docs/research/) — findings from investigation
 - [`docs/bugs/INDEX.md`](docs/bugs/INDEX.md) — known defects
 - `docs/GRAMMAR.md` — the expression grammar *(to be written)*

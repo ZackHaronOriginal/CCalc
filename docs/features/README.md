@@ -2,7 +2,7 @@
 
 What we intend to build, and what we have decided not to.
 
-Filed by topic ([`../TOPICS.md`](../TOPICS.md)). [`INDEX.md`](INDEX.md) is the
+Filed by topic ([`../topics/INDEX.md`](../topics/INDEX.md)). [`INDEX.md`](INDEX.md) is the
 backlog — every feature, one line each.
 
 ## The escalation ladder
@@ -54,5 +54,5 @@ question  →  research  →  ADR  →  feature  →  (bugs)
 
 A feature is usually the *implementation* of a settled decision. If a feature
 still has open design questions, those belong in
-[`../QUESTIONS.md`](../QUESTIONS.md) — and the feature row should say it is
+[`../questions/INDEX.md`](../questions/INDEX.md) — and the feature row should say it is
 blocked on them.

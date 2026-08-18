@@ -107,9 +107,9 @@ disappears.**
 | Made a significant decision | `docs/adr/<topic>/NNNN-name.md` | `docs/adr/INDEX.md` |
 | Identified work to do | a row in `docs/features/INDEX.md` | — |
 | Found a defect | a row in `docs/bugs/INDEX.md` | — |
-| Hit something undecided | a section in `docs/QUESTIONS.md` | — |
+| Hit something undecided | a row in `docs/questions/INDEX.md` | — |
 
-Topics come from `docs/TOPICS.md`. **Use an existing topic** — inventing
+Topics come from `docs/topics/INDEX.md`. **Use an existing topic** — inventing
 `parser` next to `expr` destroys the value of a shared list.
 
 ### Four rules, no exceptions
@@ -143,5 +143,5 @@ Update the documentation in the **same commit**:
 - grammar changes → `docs/GRAMMAR.md`
 - plugin ABI changes → `docs/PLUGINS.md` **and** `plugins/example/`
 - new module or layer change → `libs/README.md` **and** this file
-- a settled question → move it to Answered in `docs/QUESTIONS.md` and link what
-  settled it
+- a settled question → move it to Answered in `docs/questions/INDEX.md` and link
+  what settled it

@@ -20,7 +20,7 @@ Next free ID: **R-004**. IDs are global and never reused.
 
 ## Suggested next research
 
-Not started. Each of these blocks a question in [`../QUESTIONS.md`](../QUESTIONS.md).
+Not started. Each of these blocks a question in [`../questions/INDEX.md`](../questions/INDEX.md).
 
 | Topic | Question | Blocks |
 |---|---|---|

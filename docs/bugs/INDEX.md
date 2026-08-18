@@ -12,9 +12,9 @@ The first entries will arrive with M1. Format:
 
 | ID | Topic | Sev | Summary | Status | Detail |
 |---|---|---|---|---|---|
-| B-001 | expr | wrong | `2 +` parses as `2` instead of erroring on the trailing operator | confirmed | [detail](expr/B-001-trailing-operator.md) |
+| B-001 | expr | wrong | `2 +` parses as `2` instead of erroring on the trailing operator | confirmed | `expr/B-001-trailing-operator.md` |
 
-*(example row — remove when the first real bug is filed)*
+*(example row showing the format — replace it when the first real bug is filed)*
 
 ## Fixed
 

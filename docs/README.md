@@ -27,9 +27,13 @@ Accumulates, is never rewritten, describes how CCalc *came to be*.
 | [`research/`](research/) | findings from investigation | [INDEX](research/INDEX.md) |
 | [`features/`](features/) | what we intend to build | [INDEX](features/INDEX.md) |
 | [`bugs/`](bugs/) | known defects | [INDEX](bugs/INDEX.md) |
-| [`QUESTIONS.md`](QUESTIONS.md) | what we have not decided | *(the file is the index)* |
+| [`questions/`](questions/) | what we have not decided | [INDEX](questions/INDEX.md) |
+| [`topics/`](topics/) | the shared vocabulary everything is filed under | [INDEX](topics/INDEX.md) |
 
-[`TOPICS.md`](TOPICS.md) is the shared topic list every area files under.
+All six areas share the same shape: a `README.md` explaining the rules, an
+`INDEX.md` listing every item, and topic subdirectories holding the detail.
+`topics/` is the one exception — it holds *files*, not folders, because it
+defines the vocabulary rather than storing items filed under it.
 
 ## How the areas connect
 
@@ -39,7 +43,7 @@ They are not four separate piles. They are one pipeline:
         ┌──────────────────────────────────────────────┐
         │                                              │
         ▼                                              │
-   QUESTIONS.md  ──needs digging──▶  research/         │
+    questions/   ──needs digging──▶  research/         │
         │                               │              │
         │ ◀────────── answers ──────────┘              │
         │                                              │

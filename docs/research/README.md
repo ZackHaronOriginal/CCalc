@@ -3,7 +3,7 @@
 Where findings live. When an agent or a person investigates a topic, the result
 goes here — not in a chat log that disappears, and not in someone's memory.
 
-Filed by topic ([`../TOPICS.md`](../TOPICS.md)). [`INDEX.md`](INDEX.md) lists
+Filed by topic ([`../topics/INDEX.md`](../topics/INDEX.md)). [`INDEX.md`](INDEX.md) lists
 every entry and holds the next free ID.
 
 ## Layout
@@ -58,7 +58,7 @@ it rather than trusting us.
 ## Where research fits
 
 ```
-question (QUESTIONS.md)  →  research/  →  ADR  →  feature
+question (questions/)  →  research/  →  ADR  →  feature
 ```
 
 Research is what you do when a question cannot be answered from what we already

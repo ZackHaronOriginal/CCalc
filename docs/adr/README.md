@@ -3,7 +3,7 @@
 One short file per significant decision: what was decided, what else was
 considered, and **why**.
 
-Filed by topic — see [`../TOPICS.md`](../TOPICS.md) for the list.
+Filed by topic — see [`../topics/INDEX.md`](../topics/INDEX.md) for the list.
 [`INDEX.md`](INDEX.md) lists every record and holds the next free number.
 
 ## Why bother
@@ -64,7 +64,7 @@ Not: naming a variable, splitting a long function, ordinary refactors.
 An ADR is usually the *end* of a chain, not the start of one:
 
 ```
-question (QUESTIONS.md)  →  research/  →  ADR  →  feature
+question (questions/)  →  research/  →  ADR  →  feature
 ```
 
 A question we cannot answer becomes research. Research that reaches a conclusion

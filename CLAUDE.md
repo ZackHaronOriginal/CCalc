@@ -127,6 +127,20 @@ Topic names are **free-form and descriptive** — `matrix-handling`,
 `notation-handling`, `plugin-system`. Lowercase with hyphens. Name the subject,
 not the module.
 
+**A folder may hold notes and subtopic folders at the same time.** Nesting does
+not push everything down:
+
+```
+planning/extensibility/plugin-system/
+├── overview.md            ← spans the subtopics → stays at the parent
+├── abi/struct-layout.md   ← concerns one subtopic → goes down
+└── host/loading-sequence.md
+```
+
+A note that spans the subtopics stays at the parent; one that concerns a single
+subtopic goes into it. If a note does not obviously belong in one child folder,
+it belongs in the parent — do not force it down.
+
 **The first level is a fixed list**, identical in every category — not a
 convention, a rule:
 

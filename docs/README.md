@@ -59,8 +59,37 @@ docs/adr/                             ← category
 `notation-handling`, `lexical-handling`, `plugin-system` — name the subject, not
 the module. Lowercase with hyphens.
 
+### Any folder may hold notes and subtopics at the same time
+
+Nesting does not push everything down. A topic folder can contain its own files
+*and* subtopic folders side by side, at any depth:
+
+```
+docs/planning/extensibility/plugin-system/
+├── overview.md            ← spans the whole subject
+├── versioning-policy.md   ← spans the whole subject
+├── abi/                   ← subtopic
+│   ├── struct-layout.md
+│   └── error-codes.md
+├── host/
+│   └── loading-sequence.md
+└── discovery/
+    └── search-order.md
+```
+
+**What decides the level:** a note that spans the subtopics stays at the parent;
+a note that only concerns one subtopic goes down into it. `versioning-policy.md`
+affects the ABI, the host and discovery together, so it belongs at
+`plugin-system/`. `struct-layout.md` is only about the ABI, so it belongs in
+`abi/`.
+
+Forcing overview notes down into an arbitrary subtopic is the failure mode here.
+If a note does not obviously belong in one child folder, it belongs in the
+parent.
+
 Create a subtopic when a folder has enough notes that scanning it is annoying —
-not before. A folder with two files does not need a subdirectory.
+not before. A folder with two files does not need a subdirectory, and adding one
+early just buries them.
 
 ### The first level is a fixed list
 

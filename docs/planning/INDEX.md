@@ -10,7 +10,13 @@ path.
 | expression-engine / lexical-handling | [Tokenizer plan](expression-engine/lexical-handling/tokenizer-plan.md) | draft | F-001, ADR 0002 |
 | expression-engine / lexical-handling | [Number literal forms](expression-engine/lexical-handling/number-literal-forms.md) | draft | F-001 |
 | mathematics / matrix-handling | [Matrix representation notes](mathematics/matrix-handling/representation-notes.md) | draft | F-011, Q-004 |
+| extensibility / plugin-system | [Plugin system overview](extensibility/plugin-system/overview.md) | draft | ADR 0006, F-015 |
+| extensibility / plugin-system | [ABI versioning policy](extensibility/plugin-system/versioning-policy.md) | draft | ADR 0006, Q-006 |
 | extensibility / plugin-system / abi | [ABI struct layout](extensibility/plugin-system/abi/struct-layout.md) | draft | ADR 0006, Q-006 |
+
+Note the first two rows sit at `plugin-system/` itself, beside the `abi/`
+subtopic folder — they span the whole subject, so they stay at the parent. A
+folder holds notes and subtopics at the same time.
 
 ## Status values
 

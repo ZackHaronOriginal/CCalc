@@ -24,11 +24,12 @@ whatever settled them.
 
 Format:
 
-> **Q-000 · Should modules nest?** — No, in `libs/`.
+> **Q-000 · Should modules nest?** — Not in `libs/`.
 > [ADR 0001](../adr/project-structure/module-layout/0001-modules-with-strict-layering.md):
-> nesting grows without limit and nobody remembers whether statistics lives under
-> `math/stats/` or `numeric/statistics/`. Note this applies to **code modules**,
-> not to these documentation folders, which nest freely.
+> a module's folder path is one of four places its name appears, so nesting
+> breaks that mapping. Documentation folders are different and nest freely —
+> [ADR 0008](../adr/project-structure/knowledge-base/0008-knowledge-base-structure.md)
+> explains why the two rules do not conflict.
 
 ---
 

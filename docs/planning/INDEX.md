@@ -1,8 +1,8 @@
-# Design note index
+# Planning note index
 
-Every design note. **If it is not listed here, it does not exist.**
+Every planning note. **If it is not listed here, it does not exist.**
 
-Design notes carry no IDs — they are named for what they contain and linked by
+Planning notes carry no IDs — they are named for what they contain and linked by
 path.
 
 | Topic path | Note | Status | Related |
@@ -21,6 +21,6 @@ path.
 | `built` | the code matches this; the note documents reality |
 | `stale` | the code moved on — **fix or mark it**, never leave it silently wrong |
 
-`stale` is the important one. A design note that describes code as it *used to
+`stale` is the important one. A planning note that describes code as it *used to
 be* is worse than no note, because it is confidently wrong. When you change code
 that a note describes, update the note in the same commit or mark it stale.

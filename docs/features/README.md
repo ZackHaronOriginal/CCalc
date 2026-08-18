@@ -53,4 +53,4 @@ questions → research → adr → design → features → (bugs)
 A feature is usually the *implementation* of a settled decision. Open design
 questions belong in [`../questions/`](../questions/), and the feature row should
 say it is blocked on them. How to build it belongs in
-[`../design/`](../design/).
+[`../planning/`](../planning/).

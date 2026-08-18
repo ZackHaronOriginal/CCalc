@@ -60,4 +60,4 @@ module boundaries and layers, the plugin ABI, dependency choices, file formats,
 the UI toolkit.
 
 Not: naming a variable, splitting a long function, ordinary refactors. And not a
-plan for how to build something — that is a design note.
+plan for how to build something — that is a planning note.

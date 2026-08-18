@@ -57,3 +57,28 @@ The rule will be tested by exactly one situation: `graph(sin(x))` typed as a
 command, where the natural implementation has `eval` (L2) call `plot` (L3). The
 answer is that `eval` returns a plot *request* and the app acts on it. Recorded
 here because that is the moment the rule will feel inconvenient.
+
+---
+
+## Scope clarification
+
+*Added 2026-08-18. Clarifies scope; does not change the decision.*
+
+**The no-nesting rule applies to `libs/` only** — to compiled code modules. It
+does **not** apply to the documentation tree under `docs/`, which nests freely by
+design (ADR 0008).
+
+The two are not in conflict because the thing that makes nesting harmful in
+`libs/` is absent in `docs/`:
+
+| | `libs/<module>/` | `docs/<category>/<topic path>/` |
+|---|---|---|
+| Has a build target | yes — one per module | no |
+| Has an identity elsewhere | yes — namespace, include path, target name, all mirroring the folder | no |
+| Cost of nesting | the four-way name mapping breaks; `libs/math/numeric/` has no obvious target name | none |
+| Cost of *not* nesting | none | notes on one subject pile into one flat folder with nowhere to subdivide |
+| How you find things | the flat module list, visible on one screen | the category's `INDEX.md` |
+
+A module is a *thing the build knows about*, and its folder path is one of four
+places its name appears. A note is just a file. Nesting a module creates real
+ambiguity; nesting a note creates useful structure.

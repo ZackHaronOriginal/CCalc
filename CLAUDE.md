@@ -107,7 +107,7 @@ Six categories. Pick the one that matches what you produced:
 |---|---|---|
 | Investigated something | `docs/research/` | `research/INDEX.md` |
 | Made a significant decision | `docs/adr/` | `adr/INDEX.md` |
-| Planned how to build something | `docs/design/` | `design/INDEX.md` |
+| Planned how to build something | `docs/planning/` | `planning/INDEX.md` |
 | Identified work to do | `docs/features/` | `features/INDEX.md` |
 | Found a defect | `docs/bugs/` | `bugs/INDEX.md` |
 | Hit something undecided | `docs/questions/` | `questions/INDEX.md` |
@@ -119,7 +119,7 @@ subject needs** — typically two to four levels. Any folder can hold as many no
 as it takes.
 
 ```
-docs/design/expression-engine/lexical-handling/tokenizer-plan.md
+docs/planning/expression-engine/lexical-handling/tokenizer-plan.md
 docs/adr/extensibility/plugin-system/abi/0006-plugin-boundary-is-c.md
 ```
 
@@ -127,13 +127,27 @@ Topic names are **free-form and descriptive** — `matrix-handling`,
 `notation-handling`, `plugin-system`. Lowercase with hyphens. Name the subject,
 not the module.
 
-**Keep the first level consistent across categories.** Currently in use:
-`expression-engine` · `foundation` · `mathematics` · `graphing` ·
-`extensibility` · `interface` · `project-structure` · `build-and-release`.
-Below that, nest however the subject wants.
+**The first level is a fixed list**, identical in every category — not a
+convention, a rule:
 
-Create a subtopic when a folder has enough notes that scanning it is annoying —
-not before.
+`expression-engine` · `foundation` · `mathematics` · `graphing` ·
+`extensibility` · `interface` · `project-structure` · `build-and-release`
+
+Below the first level, nest however the subject wants. Create a subtopic when a
+folder has enough notes that scanning it is annoying — not before.
+
+**Why the first level is fixed:** it is what makes one search find everything
+about a subject across all six categories. Use these to look before you write —
+the answer may already exist:
+
+```sh
+find docs -path "*extensibility/plugin-system*"   # all material on a subject
+find docs/adr -path "*mathematics*"               # narrowed to one category
+grep -rn "Q-006" .                                # every reference to an item
+```
+
+Adding a first-level topic means using it consistently everywhere. Do not invent
+one casually.
 
 ### Four rules, no exceptions
 
@@ -169,4 +183,4 @@ Update the documentation in the **same commit**:
 - new module or layer change → `libs/README.md` **and** this file
 - a settled question → move it to Answered in `docs/questions/INDEX.md` and link
   what settled it
-- code a design note describes → update the note, or mark it `stale`
+- code a planning note describes → update the note, or mark it `stale`

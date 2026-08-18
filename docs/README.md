@@ -27,7 +27,7 @@ worth keeping.
 |---|---|---|
 | [`research/`](research/) | findings from investigation | [INDEX](research/INDEX.md) |
 | [`adr/`](adr/) | decisions, and why the alternatives lost | [INDEX](adr/INDEX.md) |
-| [`design/`](design/) | plans, interface notes, how things work | [INDEX](design/INDEX.md) |
+| [`planning/`](planning/) | plans, interface notes, how things work | [INDEX](planning/INDEX.md) |
 | [`features/`](features/) | what we intend to build | [INDEX](features/INDEX.md) |
 | [`bugs/`](bugs/) | known defects | [INDEX](bugs/INDEX.md) |
 | [`questions/`](questions/) | what we have not decided | [INDEX](questions/INDEX.md) |
@@ -39,7 +39,7 @@ subject needs** — typically two to four levels. Any folder at any depth can ho
 as many notes as it takes.
 
 ```
-docs/design/                          ← category
+docs/planning/                        ← category
 └── expression-engine/                ← topic
     └── lexical-handling/             ← subtopic
         ├── tokenizer-plan.md         ← notes, as many as needed
@@ -62,19 +62,46 @@ the module. Lowercase with hyphens.
 Create a subtopic when a folder has enough notes that scanning it is annoying —
 not before. A folder with two files does not need a subdirectory.
 
-### Keep the top level consistent across categories
+### The first level is a fixed list
 
-Below the first level, nest however the subject wants. But use the *same*
-top-level topic names in every category, so `plugin-system` material is under
-`extensibility/` whether it is a decision, a question or a bug.
+Below the first level, nest however the subject wants. **The first level is not
+free-form** — it is this list, identical in all six categories:
 
-Currently in use:
+| First-level topic | Covers |
+|---|---|
+| `expression-engine` | lexing, notation, parsing, evaluation, the grammar |
+| `foundation` | value model, error handling, config, logging |
+| `mathematics` | numbers, precision, matrices, statistics, units |
+| `graphing` | plot geometry, sampling, scales, rendering |
+| `extensibility` | the plugin ABI, the host, plugin authoring |
+| `interface` | terminal, desktop, session state |
+| `project-structure` | layout, conventions, the knowledge base itself |
+| `build-and-release` | CMake, CI, testing, packaging |
 
-`expression-engine` · `foundation` · `mathematics` · `graphing` ·
-`extensibility` · `interface` · `project-structure` · `build-and-release`
+**Why it is fixed, and not a convention:** because it is what makes one search
+find everything about a subject across all six categories at once.
 
-This is a convention, not a fixed vocabulary. Add a top-level topic when
-something genuinely does not fit — just add it everywhere it applies.
+```sh
+# every note, decision, question, feature and bug about the plugin system
+find docs -path "*extensibility/plugin-system*"
+
+# same, narrowed to decisions
+find docs/adr -path "*extensibility*"
+
+# everything referencing a specific item, anywhere in the repository
+grep -rn "Q-006" .
+
+# all open questions, with their topic paths
+grep -n "^| Q-" docs/questions/INDEX.md
+```
+
+If the first level were free-form, plugin material would end up under
+`plugins/`, `plugin-system/`, `extensibility/` and `abi/` depending on who filed
+it, and no single search would find it. That matters most for agents, which
+cannot browse a tree the way a person can — they search.
+
+**To add a first-level topic:** add it to this table, and use it consistently
+from then on. The friction is deliberate; the list is only useful while stable.
 
 ## How the categories connect
 
@@ -87,7 +114,7 @@ They are not six separate piles. They are one pipeline:
         │                             │                   │
         │ ◀────────── answers ────────┘                   │
         ▼ decided                                         │
-      adr/  ────────▶  design/  ────────▶  features/      │
+      adr/  ───────▶  planning/  ───────▶  features/      │
                      how to build it      the work        │
                                               │           │
                                               ▼ built     │

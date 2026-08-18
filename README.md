@@ -53,7 +53,7 @@ cmake --build build
 - [`docs/adr/`](docs/adr/) — why each significant decision was made
 - [`docs/features/INDEX.md`](docs/features/INDEX.md) — the backlog
 - [`docs/questions/INDEX.md`](docs/questions/INDEX.md) — what is still undecided
-- [`docs/design/`](docs/design/) — plans and how things work
+- [`docs/planning/`](docs/planning/) — plans and how things work
 - [`docs/research/`](docs/research/) — findings from investigation
 - [`docs/bugs/INDEX.md`](docs/bugs/INDEX.md) — known defects
 - `docs/GRAMMAR.md` — the expression grammar *(to be written)*

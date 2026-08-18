@@ -98,31 +98,55 @@ cmake --build build
 ## The knowledge base — where your work goes
 
 `docs/` has a reference half and a knowledge-base half. **Findings, decisions,
-plans and defects all belong in the knowledge base, not in a chat reply that
+plans and defects belong in the knowledge base, not in a chat reply that
 disappears.**
 
-| You did this | It goes here | Index to update |
-|---|---|---|
-| Researched a topic | `docs/research/<topic>/R-NNN-name/README.md` | `docs/research/INDEX.md` |
-| Made a significant decision | `docs/adr/<topic>/NNNN-name.md` | `docs/adr/INDEX.md` |
-| Identified work to do | a row in `docs/features/INDEX.md` | — |
-| Found a defect | a row in `docs/bugs/INDEX.md` | — |
-| Hit something undecided | a row in `docs/questions/INDEX.md` | — |
+Six categories. Pick the one that matches what you produced:
 
-Topics come from `docs/topics/INDEX.md`. **Use an existing topic** — inventing
-`parser` next to `expr` destroys the value of a shared list.
+| You did this | Category | Index to update |
+|---|---|---|
+| Investigated something | `docs/research/` | `research/INDEX.md` |
+| Made a significant decision | `docs/adr/` | `adr/INDEX.md` |
+| Planned how to build something | `docs/design/` | `design/INDEX.md` |
+| Identified work to do | `docs/features/` | `features/INDEX.md` |
+| Found a defect | `docs/bugs/` | `bugs/INDEX.md` |
+| Hit something undecided | `docs/questions/` | `questions/INDEX.md` |
+
+### Filing: nested topic folders
+
+Inside every category, items live in topic folders that **nest as deep as the
+subject needs** — typically two to four levels. Any folder can hold as many notes
+as it takes.
+
+```
+docs/design/expression-engine/lexical-handling/tokenizer-plan.md
+docs/adr/extensibility/plugin-system/abi/0006-plugin-boundary-is-c.md
+```
+
+Topic names are **free-form and descriptive** — `matrix-handling`,
+`notation-handling`, `plugin-system`. Lowercase with hyphens. Name the subject,
+not the module.
+
+**Keep the first level consistent across categories.** Currently in use:
+`expression-engine` · `foundation` · `mathematics` · `graphing` ·
+`extensibility` · `interface` · `project-structure` · `build-and-release`.
+Below that, nest however the subject wants.
+
+Create a subtopic when a folder has enough notes that scanning it is annoying —
+not before.
 
 ### Four rules, no exceptions
 
 1. **The index is the authority.** An item not in its `INDEX.md` does not exist.
-   Always update the index in the same commit as the item.
-2. **One line until it earns more.** Start every item as a single row. Give it a
+   Update the index in the same commit. This matters *more* with deep nesting,
+   not less — once folders are four deep, the index is the only reliable map.
+2. **One line until it earns more.** Start every tracked item as a row. Give it a
    file only when there is something that will not fit on the line, and a folder
    only when it has several artifacts. **Do not create empty template files** —
    they look like documentation and contain nothing.
 3. **Never delete.** Dropped features, fixed bugs, superseded research and
    answered questions stay, with a terminal status.
-4. **Never reuse an ID.** Each index records the next free one.
+4. **Never reuse an ID**, and never renumber when a file moves between topics.
 
 ### Writing research
 
@@ -145,3 +169,4 @@ Update the documentation in the **same commit**:
 - new module or layer change → `libs/README.md` **and** this file
 - a settled question → move it to Answered in `docs/questions/INDEX.md` and link
   what settled it
+- code a design note describes → update the note, or mark it `stale`

@@ -1,7 +1,6 @@
 # docs/
 
-Two different things live here, with different lifecycles. Keeping them apart is
-what stops either from rotting.
+Two different things live here, with different lifecycles.
 
 ## Reference — what we tell people
 
@@ -11,84 +10,121 @@ Curated, kept current, describes how CCalc *is*.
 |---|---|
 | `ARCHITECTURE.md` | module layers, the dependency rule, the reasoning |
 | `GRAMMAR.md` | the formal expression grammar *(to be written)* |
-| `PLUGINS.md` | the guide for plugin authors *(to be written)*  |
+| `PLUGINS.md` | the guide for plugin authors *(to be written)* |
 | `manual/` | the end-user manual *(to be written)* |
 
-**Rule:** if you change the thing, you change its document in the same commit.
-Documentation that drifts is worse than none, because people trust it.
+**Rule:** change the thing, change its document, same commit. Documentation that
+drifts is worse than none, because people trust it.
 
 ## Knowledge base — how we work
 
-Accumulates, is never rewritten, describes how CCalc *came to be*.
+Accumulates, is never rewritten, records how CCalc *came to be*.
 
-| Area | Contents | Index |
+Six **categories**. Each is one kind of thing, and together they cover everything
+worth keeping.
+
+| Category | Holds | Index |
 |---|---|---|
-| [`adr/`](adr/) | decisions, and why the alternatives lost | [INDEX](adr/INDEX.md) |
 | [`research/`](research/) | findings from investigation | [INDEX](research/INDEX.md) |
+| [`adr/`](adr/) | decisions, and why the alternatives lost | [INDEX](adr/INDEX.md) |
+| [`design/`](design/) | plans, interface notes, how things work | [INDEX](design/INDEX.md) |
 | [`features/`](features/) | what we intend to build | [INDEX](features/INDEX.md) |
 | [`bugs/`](bugs/) | known defects | [INDEX](bugs/INDEX.md) |
 | [`questions/`](questions/) | what we have not decided | [INDEX](questions/INDEX.md) |
-| [`topics/`](topics/) | the shared vocabulary everything is filed under | [INDEX](topics/INDEX.md) |
 
-All six areas share the same shape: a `README.md` explaining the rules, an
-`INDEX.md` listing every item, and topic subdirectories holding the detail.
-`topics/` is the one exception — it holds *files*, not folders, because it
-defines the vocabulary rather than storing items filed under it.
+## How items are filed: nested topic folders
 
-## How the areas connect
-
-They are not four separate piles. They are one pipeline:
+Inside every category, items live in **topic folders that nest as deep as the
+subject needs** — typically two to four levels. Any folder at any depth can hold
+as many notes as it takes.
 
 ```
-        ┌──────────────────────────────────────────────┐
-        │                                              │
-        ▼                                              │
-    questions/   ──needs digging──▶  research/         │
-        │                               │              │
-        │ ◀────────── answers ──────────┘              │
-        │                                              │
-        ▼ decided                                      │
-      adr/  ──────implies work──────▶  features/       │
-                                          │            │
-                                          ▼ built      │
-                                        bugs/  ────────┘
-                                            reveals a design flaw
+docs/design/                          ← category
+└── expression-engine/                ← topic
+    └── lexical-handling/             ← subtopic
+        ├── tokenizer-plan.md         ← notes, as many as needed
+        ├── number-literal-forms.md
+        └── unicode-identifiers.md
 ```
 
-- A **question** we cannot answer from what we know becomes **research**
-- **Research** that concludes becomes a **decision** (ADR)
-- A **decision** that implies work becomes a **feature**
-- A **feature**, once built, may produce **bugs**
-- A **bug** that exposes a design flaw raises a new **question**
+```
+docs/adr/                             ← category
+└── extensibility/                    ← topic
+    └── plugin-system/                ← subtopic
+        └── abi/                      ← sub-subtopic
+            └── 0006-plugin-boundary-is-c.md
+```
+
+**Topic names are free-form and descriptive.** `matrix-handling`,
+`notation-handling`, `lexical-handling`, `plugin-system` — name the subject, not
+the module. Lowercase with hyphens.
+
+Create a subtopic when a folder has enough notes that scanning it is annoying —
+not before. A folder with two files does not need a subdirectory.
+
+### Keep the top level consistent across categories
+
+Below the first level, nest however the subject wants. But use the *same*
+top-level topic names in every category, so `plugin-system` material is under
+`extensibility/` whether it is a decision, a question or a bug.
+
+Currently in use:
+
+`expression-engine` · `foundation` · `mathematics` · `graphing` ·
+`extensibility` · `interface` · `project-structure` · `build-and-release`
+
+This is a convention, not a fixed vocabulary. Add a top-level topic when
+something genuinely does not fit — just add it everywhere it applies.
+
+## How the categories connect
+
+They are not six separate piles. They are one pipeline:
+
+```
+        ┌─────────────────────────────────────────────────┐
+        ▼                                                 │
+   questions/  ──needs digging──▶  research/              │
+        │                             │                   │
+        │ ◀────────── answers ────────┘                   │
+        ▼ decided                                         │
+      adr/  ────────▶  design/  ────────▶  features/      │
+                     how to build it      the work        │
+                                              │           │
+                                              ▼ built     │
+                                            bugs/  ───────┘
+                                        reveals a design flaw
+```
 
 ADR 0007 — `units` moving from L2 to L1 — went the whole way round this loop
 before a single line of code existed. That is the system working.
 
-## Four rules that apply to every area
+## Four rules, every category
 
 **1. The index is the authority.** If an item is not in its `INDEX.md`, it does
-not exist. This is what prevents orphaned files nobody can find.
+not exist. This matters *more* with nesting, not less: once folders are four deep
+you cannot find things by browsing, so the index is the only reliable map.
 
-**2. One line until it earns more.** Every item starts as a single row. It gets
-its own file when there is something to say that will not fit on the line, and a
-folder only when it has several artifacts. An empty template file for every idea
-is worse than no file — it looks like documentation and contains nothing.
+**2. One line until it earns more.** Every tracked item starts as a row in the
+index. It gets a file when there is something that will not fit on the line, and
+a folder when it has several artifacts.
 
 ```
-row in INDEX.md   →   <topic>/ID-name.md   →   <topic>/ID-name/
+row in INDEX.md   →   <topic path>/ID-name.md   →   <topic path>/ID-name/
 ```
+
+**Do not create empty template files.** They look like documentation and contain
+nothing.
 
 **3. Nothing is deleted.** Dropped features, fixed bugs, superseded research and
 answered questions all stay, with a terminal status. The record of what we used
-to think — and why we changed — is the part that stops decisions being
-re-litigated every six months.
+to think — and why we changed — is what stops decisions being re-litigated.
 
 **4. IDs are never reused.** `B-004` means one bug forever, even if it turned out
 to be invalid.
 
 ## ID scheme
 
-| Prefix | Area |
+| Prefix | Category |
 |---|---|
 | `ADR NNNN` | decisions |
 | `R-NNN` | research |
@@ -96,5 +132,9 @@ to be invalid.
 | `B-NNN` | bugs |
 | `Q-NNN` | questions |
 
-Every ID is globally unique within its area and greppable across the whole
-repository, so `grep -rn "Q-006"` finds every place a question is referenced.
+IDs are **global within a category and independent of where the file sits**, so
+moving an item between topics never renumbers it. `grep -rn "Q-006"` finds every
+reference across the repository.
+
+Design notes carry no ID — they are named for what they contain and linked by
+path.
